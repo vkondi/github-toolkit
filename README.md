@@ -42,7 +42,7 @@ A comprehensive GitHub toolkit built with Next.js frontend and Flask api. Analyz
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 18+ and yarn
 - Python 3.8+
 - Git
 - GitHub Personal Access Token (recommended)
@@ -72,10 +72,10 @@ python -m flask --app api/index run -p 5328
 
 ```bash
 # Install dependencies
-npm install
+yarn
 
 # Run the development server
-npm run next-dev
+yarn next-dev
 ```
 
 ### 4. Access the Application
@@ -119,7 +119,6 @@ All API endpoints are prefixed with `/api`
 1. **Landing Page**: Access the main dashboard with all available tools
 2. **Tool Selection**: Click on any feature card to access specific tools
 3. **Navigation**: Use back buttons to return to the dashboard
-4. **Future Tools**: "Coming Soon" tools are displayed but not yet accessible
 
 ### 🔍 **Profile Analysis**
 1. Click on "Profile Analyzer" from the dashboard
@@ -132,10 +131,6 @@ All API endpoints are prefixed with `/api`
 2. Enter two GitHub usernames in the respective fields
 3. Click "Compare Profiles" to see side-by-side comparison
 4. View metrics comparison with winner indicators
-
-### 🚀 **Future Tools** (Coming Soon)
-- **Repository Insights**: Deep analysis of individual repositories
-- **Team Analytics**: Team performance and collaboration metrics
 
 ## Features in Detail
 
@@ -169,7 +164,7 @@ All API endpoints are prefixed with `/api`
 **Option 1: Concurrent Development (Recommended)**
 ```bash
 # Run both frontend and backend simultaneously
-npm run dev
+yarn dev
 ```
 
 **Option 2: Manual Commands**
@@ -178,26 +173,26 @@ npm run dev
 python -m flask --app api/index run -p 5328
 
 # Terminal 2 - Frontend
-npm run next-dev
+yarn next-dev
 ```
 
 **Option 3: Individual Services**
 ```bash
 # Backend only
-npm run flask-dev
+yarn flask-dev
 
 # Frontend only
-npm run next-dev
+yarn next-dev
 ```
 
 ### Building for Production
 
 ```bash
 # Build frontend
-npm run build
+yarn build
 
 # Start production server
-npm start
+yarn start
 ```
 
 ## Customization
