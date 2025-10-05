@@ -35,42 +35,8 @@ A comprehensive GitHub toolkit built with Next.js frontend and Flask api. Analyz
 - **Flask** - Lightweight Python web framework
 - **requests** - HTTP client for GitHub API
 - **Flask-CORS** - Cross-origin resource sharing
+- **python-dotenv** - Environment variable management
 - **GitHub API** - Official GitHub REST API
-
-## Project Structure
-
-```
-github-toolkit/
-├── app/                    # Next.js app directory
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Main page
-├── components/            # React components
-│   ├── ProfileCard.tsx   # Profile display component
-│   ├── StatsGrid.tsx     # Statistics grid
-│   ├── LanguageChart.tsx # Language distribution chart
-│   ├── RepositoryList.tsx # Repository list
-│   ├── ComparisonView.tsx # Profile comparison
-│   ├── ProfileAnalyzer.tsx # Profile analyzer tool page
-│   └── CompareProfiles.tsx # Compare profiles tool page
-├── types/                 # TypeScript type definitions
-│   └── index.ts
-├── api/              # Flask api
-│   ├── flask_main.py    # Flask application (main api)
-│   └── requirements.txt # Python dependencies
-├── scripts/              # Setup scripts
-│   ├── setup.sh         # Linux/Mac setup script
-│   └── setup.bat        # Windows setup script
-├── start_backend.bat    # Backend startup script
-├── start_frontend.bat   # Frontend startup script
-├── package.json         # Node.js dependencies
-├── tailwind.config.js   # Tailwind configuration
-├── tsconfig.json        # TypeScript configuration
-├── next.config.js       # Next.js configuration
-├── postcss.config.js    # PostCSS configuration
-├── .gitignore           # Git ignore rules
-└── README.md           # This file
-```
 
 ## Setup Instructions
 
@@ -79,6 +45,7 @@ github-toolkit/
 - Node.js 18+ and npm
 - Python 3.8+
 - Git
+- GitHub Personal Access Token (recommended)
 
 ### 1. Clone the Repository
 
@@ -90,52 +57,31 @@ cd github-toolkit
 ### 2. Backend Setup
 
 ```bash
-# Navigate to api directory
-cd api
-
-# Install dependencies (no virtual environment needed for simplicity)
+# Install Python dependencies
 pip install -r requirements.txt
 
 # Set up environment variables
-# Create .env file in api directory
+# Create .env file in root directory
 echo "GITHUB_TOKEN=your_github_token_here" > .env
 
-# Run the api server
-python flask_main.py
-```
-
-**Or use the setup script:**
-```bash
-# Windows
-scripts\setup.bat
-
-# Linux/Mac
-chmod +x scripts/setup.sh
-./scripts/setup.sh
+# Run the Flask API server
+python -m flask --app api/index run -p 5328
 ```
 
 ### 3. Frontend Setup
 
 ```bash
-# Navigate back to root directory
-cd ..
-
 # Install dependencies
 npm install
 
-# Set up environment variables
-# Create .env.local file
-echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
-
 # Run the development server
-npm run dev
+npm run next-dev
 ```
 
 ### 4. Access the Application
 
 - Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Documentation: http://localhost:8000/docs
+- Backend API: http://localhost:5328
 
 ## GitHub API Token Setup
 
@@ -154,12 +100,18 @@ To use the GitHub API effectively, you'll need a personal access token:
 
 ## API Endpoints
 
+### Base URL
+All API endpoints are prefixed with `/api`
+
 ### Profile Analysis
-- `GET /profile/{username}` - Get complete profile analysis
-- `GET /repositories/{username}` - Get user repositories
+- `GET /api/profile/{username}` - Get complete profile analysis
+- `GET /api/repositories/{username}` - Get user repositories
 
 ### Profile Comparison
-- `GET /compare/{username1}/{username2}` - Compare two profiles
+- `GET /api/compare/{username1}/{username2}` - Compare two profiles
+
+### Root Endpoint
+- `GET /api/` - API health check
 
 ## Usage
 
@@ -214,32 +166,28 @@ To use the GitHub API effectively, you'll need a personal access token:
 
 ### Running in Development Mode
 
-**Option 1: Manual Commands**
+**Option 1: Concurrent Development (Recommended)**
 ```bash
-# Terminal 1 - Backend
-cd api
-python flask_main.py
-
-# Terminal 2 - Frontend
+# Run both frontend and backend simultaneously
 npm run dev
 ```
 
-**Option 2: Batch Files (Windows)**
+**Option 2: Manual Commands**
 ```bash
-# Start api
-start_backend.bat
+# Terminal 1 - Backend
+python -m flask --app api/index run -p 5328
 
-# Start frontend (in another terminal)
-start_frontend.bat
+# Terminal 2 - Frontend
+npm run next-dev
 ```
 
-**Option 3: Setup Scripts**
+**Option 3: Individual Services**
 ```bash
-# Windows
-scripts\setup.bat
+# Backend only
+npm run flask-dev
 
-# Linux/Mac
-./scripts/setup.sh
+# Frontend only
+npm run next-dev
 ```
 
 ### Building for Production
@@ -255,7 +203,7 @@ npm start
 ## Customization
 
 ### Adding New Metrics
-1. Update the api API in `api/main.py`
+1. Update the API routes in `api/routes/common_routes.py`
 2. Add new fields to the TypeScript types in `types/index.ts`
 3. Update the frontend components to display the new metrics
 
@@ -268,21 +216,10 @@ npm start
 
 ### Common Issues
 
-1. **CORS Errors**: Make sure the api is running on port 8000 and frontend on port 3000
+1. **CORS Errors**: Make sure the api is running on port 5328 and frontend on port 3000
 2. **API Rate Limits**: Add a GitHub token to increase rate limits
 3. **User Not Found**: Verify the GitHub username exists and is public
 4. **Build Errors**: Ensure all dependencies are installed correctly
-
-### Debug Mode
-
-Enable debug logging by setting environment variables:
-```bash
-# Backend
-export DEBUG=1
-
-# Frontend
-export NODE_ENV=development
-```
 
 ## Contributing
 
@@ -294,49 +231,4 @@ export NODE_ENV=development
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review the API documentation at http://localhost:8000/docs
-3. Open an issue on GitHub
-
-## UI/UX Design
-
-### 🎨 **Dashboard Design**
-- **Modern Interface**: Clean, professional dashboard with feature cards
-- **Color-coded Tools**: Each tool has its own color scheme for easy identification
-- **Responsive Layout**: Optimized for all screen sizes and devices
-- **Intuitive Navigation**: Clear back buttons and tool selection
-- **Future-ready**: Scalable design for easy addition of new tools
-
-### 🚀 **User Experience**
-- **One-click Access**: Direct navigation to specific tools from dashboard
-- **Consistent Design**: Uniform card layout across all tools
-- **Visual Feedback**: Hover effects and loading states
-- **Error Handling**: Clear error messages and user guidance
-
-## Roadmap
-
-### ✅ **Completed**
-- [x] Dashboard interface with feature cards
-- [x] Profile Analyzer tool
-- [x] Compare Profiles tool
-- [x] Responsive design
-- [x] Navigation system
-
-### 🚧 **In Progress**
-- [ ] Repository Insights tool
-- [ ] Team Analytics tool
-
-### 📋 **Planned**
-- [ ] Contribution graph visualization
-- [ ] Repository activity timeline
-- [ ] Advanced filtering and sorting
-- [ ] Export functionality (PDF, CSV)
-- [ ] Historical data tracking
-- [ ] User authentication
-- [ ] Saved analyses
-- [ ] Custom dashboards
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -1,3 +1,0 @@
-@echo off
-echo Starting GitHub Toolkit Frontend...
-npm run dev

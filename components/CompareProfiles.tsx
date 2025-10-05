@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { ArrowLeft, Github } from 'lucide-react'
 import ComparisonView from '@/components/ComparisonView'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-
 interface CompareProfilesProps {
   onBack: () => void
 }
@@ -23,7 +21,7 @@ export default function CompareProfiles({ onBack }: CompareProfilesProps) {
     setError('')
     
     try {
-      const response = await fetch(`${API_BASE_URL}/compare/${user1}/${user2}`)
+      const response = await fetch(`/api/compare/${user1}/${user2}`)
       if (!response.ok) {
         throw new Error('Failed to fetch comparison data')
       }

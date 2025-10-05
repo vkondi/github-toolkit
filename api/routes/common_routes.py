@@ -1,15 +1,15 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-import requests
+from flask import Blueprint, request, jsonify
 import os
+import requests
 from typing import Dict, List, Any
 
-app = Flask(__name__)
-CORS(app)
+# Create a Blueprint for common routes
+common_bp = Blueprint('common', __name__)
 
 # GitHub API configuration
 GITHUB_API_BASE = "https://api.github.com"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
+
 
 def get_github_data(url: str, headers: Dict[str, str] = None) -> Dict[str, Any]:
     """Make authenticated request to GitHub API"""
@@ -108,11 +108,11 @@ def calculate_language_stats(repositories: List[Dict[str, Any]]) -> List[Dict[st
     
     return sorted(language_stats, key=lambda x: x["count"], reverse=True)
 
-@app.route("/")
+@common_bp.route("/")
 def root():
     return jsonify({"message": "GitHub Toolkit API"})
 
-@app.route("/profile/<username>")
+@common_bp.route("/profile/<username>")
 def get_profile(username: str):
     """Get complete profile analysis for a user"""
     try:
@@ -154,7 +154,7 @@ def get_profile(username: str):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/compare/<username1>/<username2>")
+@common_bp.route("/compare/<username1>/<username2>")
 def compare_profiles(username1: str, username2: str):
     """Compare two GitHub profiles"""
     try:
@@ -196,7 +196,7 @@ def compare_profiles(username1: str, username2: str):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/repositories/<username>")
+@common_bp.route("/repositories/<username>")
 def get_repositories(username: str):
     """Get user repositories"""
     try:
@@ -205,6 +205,3 @@ def get_repositories(username: str):
         return jsonify({"repositories": repositories})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)

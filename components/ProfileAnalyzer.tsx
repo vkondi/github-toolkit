@@ -8,8 +8,6 @@ import LanguageChart from '@/components/LanguageChart'
 import StatsGrid from '@/components/StatsGrid'
 import { ProfileData } from '@/types'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-
 interface ProfileAnalyzerProps {
   onBack: () => void
 }
@@ -27,7 +25,7 @@ export default function ProfileAnalyzer({ onBack }: ProfileAnalyzerProps) {
     setError('')
     
     try {
-      const response = await fetch(`${API_BASE_URL}/profile/${username}`)
+      const response = await fetch(`/api/profile/${username}`)
       if (!response.ok) {
         throw new Error('Failed to fetch profile')
       }
