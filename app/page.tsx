@@ -48,24 +48,24 @@ export default function Home() {
         "Hiring Insights",
       ],
     },
-    // {
-    //   id: 'repository-insights',
-    //   title: 'Repository Insights',
-    //   description: 'Deep dive into repository statistics, contributors, and project health metrics.',
-    //   icon: Code,
-    //   color: 'bg-purple-500',
-    //   features: ['Repository Health', 'Contributor Analysis', 'Commit Patterns', 'Project Trends'],
-    //   comingSoon: true
-    // },
-    // {
-    //   id: 'team-analytics',
-    //   title: 'Team Analytics',
-    //   description: 'Analyze team performance, collaboration patterns, and productivity metrics.',
-    //   icon: TrendingUp,
-    //   color: 'bg-orange-500',
-    //   features: ['Team Performance', 'Collaboration Metrics', 'Productivity Analysis', 'Growth Tracking'],
-    //   comingSoon: true
-    // }
+    {
+      id: 'repository-insights',
+      title: 'Repository Insights',
+      description: 'Deep dive into repository statistics, contributors, and project health metrics.',
+      icon: Code,
+      color: 'bg-purple-500',
+      features: ['Repository Health', 'Contributor Analysis', 'Commit Patterns', 'Project Trends'],
+      comingSoon: true
+    },
+    {
+      id: 'team-analytics',
+      title: 'Team Analytics',
+      description: 'Analyze team performance, collaboration patterns, and productivity metrics.',
+      icon: TrendingUp,
+      color: 'bg-orange-500',
+      features: ['Team Performance', 'Collaboration Metrics', 'Productivity Analysis', 'Growth Tracking'],
+      comingSoon: true
+    }
   ];
 
   const renderToolContent = () => {
