@@ -47,8 +47,8 @@ export interface LanguageStats {
 export interface ContributionStats {
   total_contributions: number
   contributions_this_year: number
-  longest_streak: int
-  current_streak: int
+  longest_streak: number
+  current_streak: number
   contributions_by_month: Array<{ month: string; contributions: number }>
 }
 
