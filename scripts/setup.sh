@@ -22,9 +22,9 @@ echo "✅ Prerequisites check passed"
 echo "📦 Installing frontend dependencies..."
 npm install
 
-# Install backend dependencies
+# Install api dependencies
 echo "🐍 Installing Python dependencies..."
-cd backend
+cd api
 pip3 install -r requirements.txt
 
 # Create environment files
@@ -37,8 +37,8 @@ cd ..
 echo "✅ Setup complete!"
 echo ""
 echo "📋 Next steps:"
-echo "1. Add your GitHub token to backend/.env"
-echo "2. Start the backend: cd backend && python flask_main.py"
+echo "1. Add your GitHub token to api/.env"
+echo "2. Start the api: cd api && python flask_main.py"
 echo "3. Start the frontend: npm run dev"
 echo "4. Open http://localhost:3000 in your browser"
 echo ""

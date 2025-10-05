@@ -1,15 +1,15 @@
 {
   "name": "github-toolkit",
   "version": "1.0.0",
-  "description": "A comprehensive GitHub toolkit with Next.js frontend and Flask backend",
+  "description": "A comprehensive GitHub toolkit with Next.js frontend and Flask api",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "backend": "cd backend && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
-    "install-backend": "cd backend && pip install -r requirements.txt"
+    "api": "cd api && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "install-api": "cd api && pip install -r requirements.txt"
   },
   "dependencies": {
     "next": "14.0.0",

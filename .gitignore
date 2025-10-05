@@ -1,8 +1,8 @@
 # Dependencies
 node_modules/
-backend/venv/
-backend/__pycache__/
-backend/*.pyc
+api/venv/
+api/__pycache__/
+api/*.pyc
 
 # Environment variables
 .env
@@ -10,7 +10,7 @@ backend/*.pyc
 .env.development.local
 .env.test.local
 .env.production.local
-backend/.env
+api/.env
 
 # Next.js
 .next/

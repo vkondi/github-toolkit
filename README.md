@@ -1,6 +1,6 @@
 # GitHub Toolkit
 
-A comprehensive GitHub toolkit built with Next.js frontend and Flask backend. Analyze GitHub profiles, view detailed metrics, visualize data with charts, and compare profiles side-by-side.
+A comprehensive GitHub toolkit built with Next.js frontend and Flask api. Analyze GitHub profiles, view detailed metrics, visualize data with charts, and compare profiles side-by-side.
 
 ## Features
 
@@ -55,8 +55,8 @@ github-toolkit/
 │   └── CompareProfiles.tsx # Compare profiles tool page
 ├── types/                 # TypeScript type definitions
 │   └── index.ts
-├── backend/              # Flask backend
-│   ├── flask_main.py    # Flask application (main backend)
+├── api/              # Flask api
+│   ├── flask_main.py    # Flask application (main api)
 │   └── requirements.txt # Python dependencies
 ├── scripts/              # Setup scripts
 │   ├── setup.sh         # Linux/Mac setup script
@@ -90,17 +90,17 @@ cd github-toolkit
 ### 2. Backend Setup
 
 ```bash
-# Navigate to backend directory
-cd backend
+# Navigate to api directory
+cd api
 
 # Install dependencies (no virtual environment needed for simplicity)
 pip install -r requirements.txt
 
 # Set up environment variables
-# Create .env file in backend directory
+# Create .env file in api directory
 echo "GITHUB_TOKEN=your_github_token_here" > .env
 
-# Run the backend server
+# Run the api server
 python flask_main.py
 ```
 
@@ -145,7 +145,7 @@ To use the GitHub API effectively, you'll need a personal access token:
 2. Generate a new token with the following scopes:
    - `public_repo` (for public repository access)
    - `user` (for user profile information)
-3. Add the token to your backend `.env` file:
+3. Add the token to your api `.env` file:
    ```
    GITHUB_TOKEN=your_token_here
    ```
@@ -217,7 +217,7 @@ To use the GitHub API effectively, you'll need a personal access token:
 **Option 1: Manual Commands**
 ```bash
 # Terminal 1 - Backend
-cd backend
+cd api
 python flask_main.py
 
 # Terminal 2 - Frontend
@@ -226,7 +226,7 @@ npm run dev
 
 **Option 2: Batch Files (Windows)**
 ```bash
-# Start backend
+# Start api
 start_backend.bat
 
 # Start frontend (in another terminal)
@@ -255,7 +255,7 @@ npm start
 ## Customization
 
 ### Adding New Metrics
-1. Update the backend API in `backend/main.py`
+1. Update the api API in `api/main.py`
 2. Add new fields to the TypeScript types in `types/index.ts`
 3. Update the frontend components to display the new metrics
 
@@ -268,7 +268,7 @@ npm start
 
 ### Common Issues
 
-1. **CORS Errors**: Make sure the backend is running on port 8000 and frontend on port 3000
+1. **CORS Errors**: Make sure the api is running on port 8000 and frontend on port 3000
 2. **API Rate Limits**: Add a GitHub token to increase rate limits
 3. **User Not Found**: Verify the GitHub username exists and is public
 4. **Build Errors**: Ensure all dependencies are installed correctly

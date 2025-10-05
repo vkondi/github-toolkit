@@ -25,9 +25,9 @@ REM Install frontend dependencies
 echo 📦 Installing frontend dependencies...
 npm install
 
-REM Install backend dependencies
+REM Install api dependencies
 echo 🐍 Installing Python dependencies...
-cd backend
+cd api
 pip install -r requirements.txt
 
 REM Create environment files
@@ -40,8 +40,8 @@ cd ..
 echo ✅ Setup complete!
 echo.
 echo 📋 Next steps:
-echo 1. Add your GitHub token to backend\.env
-echo 2. Start the backend: start_backend.bat
+echo 1. Add your GitHub token to api\.env
+echo 2. Start the api: start_backend.bat
 echo 3. Start the frontend: start_frontend.bat
 echo 4. Open http://localhost:3000 in your browser
 echo.

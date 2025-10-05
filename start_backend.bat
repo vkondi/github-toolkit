@@ -1,4 +1,4 @@
 @echo off
 echo Starting GitHub Toolkit Backend...
-cd backend
+cd api
 python flask_main.py
