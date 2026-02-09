@@ -36,7 +36,7 @@ A comprehensive GitHub toolkit built with Next.js frontend and Flask api. Analyz
 - **requests** - HTTP client for GitHub API
 - **Flask-CORS** - Cross-origin resource sharing
 - **python-dotenv** - Environment variable management
-- **GitHub API** - Official GitHub REST API
+- **GitHub REST API v2022-11-28** - Official GitHub REST API with recommended headers
 
 ## Setup Instructions
 
@@ -61,12 +61,17 @@ cd github-toolkit
 pip install -r requirements.txt
 
 # Set up environment variables
-# Create .env file in root directory
-echo "GITHUB_TOKEN=your_github_token_here" > .env
+# Create .env file in the root directory
+cp .env.example .env
+
+# Edit .env and add your GitHub token
+# GITHUB_TOKEN=your_github_token_here
 
 # Run the Flask API server
 python -m flask --app api/index run -p 5328
 ```
+
+**Important**: The backend now properly loads environment variables from the `.env` file using `python-dotenv`. Make sure to create your `.env` file based on `.env.example` before running the backend.
 
 ### 3. Frontend Setup
 
@@ -87,16 +92,75 @@ yarn next-dev
 
 To use the GitHub API effectively, you'll need a personal access token:
 
-1. Go to GitHub Settings → Developer settings → Personal access tokens
+1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
 2. Generate a new token with the following scopes:
    - `public_repo` (for public repository access)
    - `user` (for user profile information)
-3. Add the token to your api `.env` file:
-   ```
+3. Add the token to your `.env` file in the root directory:
+   ```bash
    GITHUB_TOKEN=your_token_here
    ```
 
 **Note**: Without a token, you'll be limited to 60 requests per hour. With a token, you get 5,000 requests per hour.
+
+### API Best Practices
+This project follows GitHub's recommended API best practices:
+- Uses `Accept: application/vnd.github+json` header
+- Includes `X-GitHub-Api-Version: 2022-11-28` header
+- Properly authenticates using personal access tokens via environment variables
+- Reference: [GitHub REST API Documentation](https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28)
+
+## Project Architecture
+
+### Backend Structure
+The backend is organized using a service-oriented architecture that promotes code reuse and maintainability:
+
+```
+api/
+├── services/
+│   └── github.py          # Centralized GitHub API service with unified interface
+├── utils/
+│   ├── headers.py         # Shared GitHub API headers configuration
+│   └── metrics.py         # Reusable metric calculation functions
+├── routes/
+│   └── common_routes.py   # Route handlers that delegate to services
+├── app.py                 # Flask application factory
+├── index.py               # Application entry point
+└── config.py              # Configuration and environment setup
+```
+
+**Architecture Benefits:**
+- **Service Layer**: `GitHubService` class provides a unified interface for all GitHub API interactions
+- **Reusable Utilities**: Common patterns like headers and metric calculations are centralized
+- **Clean Routes**: Route handlers focus on HTTP concerns and delegate business logic to services
+- **Single Source of Truth**: GitHub API configuration and error handling are defined once
+- **Easy Extension**: New GitHub API features are added to the service, not scattered across routes
+
+### Frontend Structure
+```
+app/
+├── page.tsx                    # Landing page with tool dashboard
+├── profile-analyzer/
+│   └── page.tsx               # Profile analysis page at /profile-analyzer
+├── compare-profiles/
+│   └── page.tsx               # Profile comparison page at /compare-profiles
+├── layout.tsx                 # Root layout
+└── globals.css                # Global styles
+
+components/
+├── ProfileAnalyzer.tsx        # Profile analysis component
+├── CompareProfiles.tsx        # Profile comparison component
+├── ProfileCard.tsx            # Reusable profile display component
+├── RepositoryList.tsx         # Repository listing component
+├── LanguageChart.tsx          # Data visualization component
+└── ...                        # Other reusable components
+```
+
+**Frontend Design:**
+- **Dedicated Routes**: Each tool has its own URL route for direct access
+- **Shareable URLs**: Users can bookmark and share tool links directly
+- **SEO-Friendly**: Proper page routing with Next.js App Router
+- **Intuitive Navigation**: Clear URL structure with back navigation to dashboard
 
 ## API Endpoints
 
@@ -115,22 +179,27 @@ All API endpoints are prefixed with `/api`
 
 ## Usage
 
-### 🏠 **Dashboard Navigation**
-1. **Landing Page**: Access the main dashboard with all available tools
-2. **Tool Selection**: Click on any feature card to access specific tools
-3. **Navigation**: Use back buttons to return to the dashboard
+### Navigation
+The application provides two main tools accessible from the landing page:
 
-### 🔍 **Profile Analysis**
-1. Click on "Profile Analyzer" from the dashboard
-2. Enter a GitHub username in the search field
-3. Click "Analyze Profile" to get detailed insights
-4. View profile information, statistics, language distribution, and repositories
+**Landing Page (`/`)** - Browse all available tools with feature descriptions
+**Profile Analyzer (`/profile-analyzer`)** - Analyze individual GitHub profiles
+**Compare Profiles (`/compare-profiles`)** - Compare two GitHub users side-by-side
 
-### 👥 **Profile Comparison**
-1. Click on "Compare Profiles" from the dashboard
-2. Enter two GitHub usernames in the respective fields
-3. Click "Compare Profiles" to see side-by-side comparison
-4. View metrics comparison with winner indicators
+### Profile Analysis
+From the Profile Analyzer page, enter a GitHub username to view:
+- **Profile Information**: Avatar, bio, location, company, and social links
+- **Statistics**: Follower count, repository count, total stars and forks
+- **Language Distribution**: Pie chart visualization of programming languages used
+- **Repository List**: Recent repositories with metrics (stars, forks, language, size)
+- **Key Metrics**: Average stats per repository, most-used language, repository count
+
+### Profile Comparison
+From the Compare Profiles page, enter two GitHub usernames to see:
+- **Side-by-side Profile Information**: For both users
+- **Metrics Comparison**: Followers, repositories, stars, forks side-by-side
+- **Winner Indicators**: Visual markers showing which user leads in each metric category
+- **Quick Comparison**: Easily identify strengths for hiring or research purposes
 
 ## Features in Detail
 
@@ -139,6 +208,7 @@ All API endpoints are prefixed with `/api`
 - **Navigation**: Easy access to all tools with back button navigation
 - **Scalability**: Ready for future tool additions with consistent design
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
+- **Optimized Images**: Uses Next.js Image component for automatic optimization and performance
 
 ### 🔍 **Profile Analysis**
 - **Profile Information**: Avatar, bio, location, company, social links
@@ -197,24 +267,61 @@ yarn start
 
 ## Customization
 
-### Adding New Metrics
-1. Update the API routes in `api/routes/common_routes.py`
-2. Add new fields to the TypeScript types in `types/index.ts`
-3. Update the frontend components to display the new metrics
+### Backend Enhancements
 
-### Styling
+#### Adding New GitHub API Features
+To add new GitHub API functionality:
+
+1. Extend the `GitHubService` class in `api/services/github.py` with a new method
+2. Use the `get_github_headers()` utility from `api/utils/headers.py` for API headers
+3. Use the `_make_request()` method for consistent error handling
+4. Create a new route in `api/routes/common_routes.py` that leverages the service method
+
+#### Reusing Metric Calculations
+For metrics used across multiple endpoints:
+
+1. Add the calculation function to `api/utils/metrics.py`
+2. Import it in the route handlers that need it
+3. This centralizes logic and ensures consistency across endpoints
+
+**Example: Adding a new GitHub metric**
+```python
+# In api/utils/metrics.py
+def calculate_contribution_streak(repositories: List[Dict[str, Any]]) -> int:
+    """Calculate days since last contribution"""
+    # Implementation
+    return streak_days
+
+# In api/routes/common_routes.py
+from utils.metrics import calculate_contribution_streak
+metrics = calculate_contribution_streak(repositories)
+```
+
+### Frontend Enhancements
 - Modify `tailwind.config.js` for theme customization
 - Update `app/globals.css` for global styles
 - Component-specific styles can be added using Tailwind classes
+
+## Git Configuration
+
+### Python Cache Files
+The repository's `.gitignore` is configured to exclude all Python cache files at any directory level:
+```
+**/__pycache__/  # All __pycache__ directories
+**/*.pyc         # All compiled Python files
+```
+
+This keeps the repository clean by automatically ignoring Python compiled artifacts.
 
 ## Troubleshooting
 
 ### Common Issues
 
 1. **CORS Errors**: Make sure the api is running on port 5328 and frontend on port 3000
-2. **API Rate Limits**: Add a GitHub token to increase rate limits
+2. **API Rate Limits**: Add a GitHub token to your `.env` file to increase rate limits from 60 to 5,000 requests/hour
 3. **User Not Found**: Verify the GitHub username exists and is public
 4. **Build Errors**: Ensure all dependencies are installed correctly
+5. **Environment Variables Not Loading**: Ensure `.env` file is in the root directory and `python-dotenv` is installed
 
 ## Contributing
 

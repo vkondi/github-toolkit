@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Github,
   User,
@@ -13,12 +12,9 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-import ProfileAnalyzer from "@/components/ProfileAnalyzer";
-import CompareProfiles from "@/components/CompareProfiles";
+import Link from "next/link";
 
 export default function Home() {
-  const [activeTool, setActiveTool] = useState<string | null>(null);
-
   const tools = [
     {
       id: "profile-analyzer",
@@ -27,6 +23,7 @@ export default function Home() {
         "Get detailed insights into any GitHub user's profile, repositories, and activity metrics.",
       icon: User,
       color: "bg-blue-500",
+      href: "/profile-analyzer",
       features: [
         "Profile Information",
         "Repository Statistics",
@@ -41,6 +38,7 @@ export default function Home() {
         "Compare two GitHub profiles side-by-side for hiring decisions and team analysis.",
       icon: Users,
       color: "bg-green-500",
+      href: "/compare-profiles",
       features: [
         "Side-by-side Comparison",
         "Metrics Analysis",
@@ -67,21 +65,6 @@ export default function Home() {
       comingSoon: true
     }
   ];
-
-  const renderToolContent = () => {
-    switch (activeTool) {
-      case "profile-analyzer":
-        return <ProfileAnalyzer onBack={() => setActiveTool(null)} />;
-      case "compare-profiles":
-        return <CompareProfiles onBack={() => setActiveTool(null)} />;
-      default:
-        return null;
-    }
-  };
-
-  if (activeTool) {
-    return renderToolContent();
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -134,56 +117,65 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {tools.map((tool) => {
             const Icon = tool.icon;
-            return (
-              <div
-                key={tool.id}
-                onClick={() => !tool.comingSoon && setActiveTool(tool.id)}
-                className={`card cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 ${
-                  tool.comingSoon
-                    ? "opacity-60 cursor-not-allowed"
-                    : "hover:border-primary-300"
-                }`}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className={`p-3 rounded-lg ${tool.color} text-white`}>
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">
-                        {tool.title}
-                      </h3>
-                      {tool.comingSoon && (
-                        <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-gray-600 mb-4">{tool.description}</p>
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-medium text-gray-700">
-                        Features:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {tool.features.map((feature, index) => (
-                          <span
-                            key={index}
-                            className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md"
-                          >
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    {!tool.comingSoon && (
-                      <div className="mt-4 flex items-center text-primary-600 font-medium">
-                        <span>Get Started</span>
-                        <ArrowRight className="h-4 w-4 ml-1" />
-                      </div>
+            const CardContent = (
+              <div className="flex items-start space-x-4">
+                <div className={`p-3 rounded-lg ${tool.color} text-white`}>
+                  <Icon className="h-6 w-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {tool.title}
+                    </h3>
+                    {tool.comingSoon && (
+                      <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
+                        Coming Soon
+                      </span>
                     )}
                   </div>
+                  <p className="text-gray-600 mb-4">{tool.description}</p>
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-medium text-gray-700">
+                      Features:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {tool.features.map((feature, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  {!tool.comingSoon && (
+                    <div className="mt-4 flex items-center text-primary-600 font-medium">
+                      <span>Get Started</span>
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </div>
+                  )}
                 </div>
               </div>
+            );
+
+            if (tool.comingSoon) {
+              return (
+                <div
+                  key={tool.id}
+                  className={`card cursor-not-allowed transition-all duration-200 opacity-60`}
+                >
+                  {CardContent}
+                </div>
+              );
+            }
+
+            return (
+              <Link key={tool.id} href={tool.href!}>
+                <div className="card cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 hover:border-primary-300">
+                  {CardContent}
+                </div>
+              </Link>
             );
           })}
         </div>

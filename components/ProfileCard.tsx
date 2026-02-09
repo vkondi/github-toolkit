@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { GitHubProfile } from '@/types'
 import { MapPin, Building, Globe, Twitter, Calendar, Users, Star, GitFork } from 'lucide-react'
 
@@ -20,10 +21,13 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
     <div className="card">
       <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
         {/* Avatar */}
-        <img
+        <Image
           src={profile.avatar_url}
           alt={`${profile.username}'s avatar`}
+          width={96}
+          height={96}
           className="w-24 h-24 rounded-full border-4 border-gray-200"
+          priority
         />
         
         {/* Profile Info */}

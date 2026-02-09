@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ComparisonData } from '@/types'
 import { Users, Star, GitFork, TrendingUp, Award } from 'lucide-react'
 
@@ -72,9 +73,11 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* User 1 */}
           <div className="text-center">
-            <img
+            <Image
               src={user1.avatar_url}
               alt={`${user1.username}'s avatar`}
+              width={80}
+              height={80}
               className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-gray-200"
             />
             <h3 className="text-xl font-semibold text-gray-900">
@@ -88,9 +91,11 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
           
           {/* User 2 */}
           <div className="text-center">
-            <img
+            <Image
               src={user2.avatar_url}
               alt={`${user2.username}'s avatar`}
+              width={80}
+              height={80}
               className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-gray-200"
             />
             <h3 className="text-xl font-semibold text-gray-900">
