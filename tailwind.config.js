@@ -8,18 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-        },
+        primary: '#CCFF00',       // Radioactive Lime
+        secondary: '#FF00FF',     // Electric Magenta
+        tertiary: '#00F0FF',      // Cyan Glitch
+        background: '#050505',    // Obsidian
+        surface: '#121212',       // Dark Room
+        elevated: '#1A1A1A',      // Carbon
       },
     },
   },

@@ -5,23 +5,40 @@
 @layer base {
   html {
     font-family: system-ui, sans-serif;
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-white;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-primary hover:bg-[#BBEE00] text-background font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
-  
+
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-secondary hover:bg-[#EE00EE] text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
-  
+
+  .btn-tertiary {
+    @apply bg-tertiary hover:bg-[#00DDEE] text-background font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+    @apply bg-surface rounded-xl shadow-lg border border-elevated p-6;
   }
-  
+
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200;
+    @apply w-full px-4 py-2 bg-elevated border border-elevated rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200 text-white;
+  }
+
+  .scroll-to-top {
+    @apply fixed bottom-8 right-8 p-3 bg-primary text-background rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 pointer-events-none;
+  }
+
+  .scroll-to-top.visible {
+    @apply opacity-100 pointer-events-auto;
   }
 }

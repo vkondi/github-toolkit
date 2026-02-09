@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import { LanguageStats } from '@/types'
@@ -12,9 +12,24 @@ interface LanguageChartProps {
 }
 
 export default function LanguageChart({ data }: LanguageChartProps) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Check if mobile on mount
+    setIsMobile(window.innerWidth < 768)
+
+    // Handle window resize
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const colors = [
-    '#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6',
-    '#EC4899', '#06B6D4', '#84CC16', '#F97316', '#6366F1'
+    '#CCFF00', '#FF00FF', '#00F0FF', '#FF6B9D', '#C44569',
+    '#FFA502', '#60CCFF', '#95FF00', '#FF3333', '#00FF88'
   ]
 
   const chartData = {
@@ -23,7 +38,7 @@ export default function LanguageChart({ data }: LanguageChartProps) {
       {
         data: data.map(item => item.percentage),
         backgroundColor: colors.slice(0, data.length),
-        borderColor: '#ffffff',
+        borderColor: '#1A1A1A',
         borderWidth: 2,
       },
     ],
@@ -34,16 +49,22 @@ export default function LanguageChart({ data }: LanguageChartProps) {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'right' as const,
+        position: (isMobile ? 'bottom' : 'right') as 'bottom' | 'right',
         labels: {
           usePointStyle: true,
-          padding: 20,
+          padding: isMobile ? 10 : 20,
           font: {
-            size: 14
-          }
+            size: isMobile ? 12 : 14
+          },
+          color: '#FFFFFF'
         }
       },
       tooltip: {
+        backgroundColor: '#1A1A1A',
+        titleColor: '#CCFF00',
+        bodyColor: '#FFFFFF',
+        borderColor: '#CCFF00',
+        borderWidth: 1,
         callbacks: {
           label: function(context: any) {
             const label = context.label || ''
@@ -56,7 +77,7 @@ export default function LanguageChart({ data }: LanguageChartProps) {
   }
 
   return (
-    <div className="h-96">
+    <div className="h-80 md:h-96">
       <Doughnut data={chartData} options={options} />
     </div>
   )

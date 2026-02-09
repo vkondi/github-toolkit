@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ComparisonData } from '@/types'
 import { Users, Star, GitFork, TrendingUp, Award } from 'lucide-react'
 
@@ -65,22 +66,24 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
     <div className="space-y-8">
       {/* Header */}
       <div className="card">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+        <h2 className="text-2xl font-bold text-primary mb-6 text-center">
           Profile Comparison
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* User 1 */}
           <div className="text-center">
-            <img
+            <Image
               src={user1.avatar_url}
               alt={`${user1.username}'s avatar`}
-              className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-gray-200"
+              width={80}
+              height={80}
+              className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-primary"
             />
-            <h3 className="text-xl font-semibold text-gray-900">
+            <h3 className="text-xl font-semibold text-primary">
               {user1.name || user1.username}
             </h3>
-            <p className="text-gray-600">@{user1.username}</p>
+            <p className="text-gray-400">@{user1.username}</p>
             {user1.bio && (
               <p className="text-sm text-gray-500 mt-2">{user1.bio}</p>
             )}
@@ -88,15 +91,17 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
           
           {/* User 2 */}
           <div className="text-center">
-            <img
+            <Image
               src={user2.avatar_url}
               alt={`${user2.username}'s avatar`}
-              className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-gray-200"
+              width={80}
+              height={80}
+              className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-secondary"
             />
-            <h3 className="text-xl font-semibold text-gray-900">
+            <h3 className="text-xl font-semibold text-secondary">
               {user2.name || user2.username}
             </h3>
-            <p className="text-gray-600">@{user2.username}</p>
+            <p className="text-gray-400">@{user2.username}</p>
             {user2.bio && (
               <p className="text-sm text-gray-500 mt-2">{user2.bio}</p>
             )}
@@ -113,26 +118,26 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
           return (
             <div key={index} className="card">
               <div className="flex items-center space-x-4 mb-4">
-                <div className="p-2 bg-primary-50 rounded-lg">
-                  <Icon className="h-5 w-5 text-primary-600" />
+                <div className="p-2 bg-elevated border border-primary rounded-lg">
+                  <Icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">{metric.title}</h3>
+                <h3 className="text-lg font-semibold text-primary">{metric.title}</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* User 1 Value */}
-                <div className={`text-center p-4 rounded-lg ${
-                  winner === 'user1' ? 'bg-green-50 border-2 border-green-200' : 
-                  winner === 'tie' ? 'bg-gray-50 border-2 border-gray-200' : 
-                  'bg-gray-50'
+                <div className={`text-center p-4 rounded-lg border ${
+                  winner === 'user1' ? 'bg-green-900/20 border-primary' : 
+                  winner === 'tie' ? 'bg-elevated border-tertiary' : 
+                  'bg-elevated border-elevated'
                 }`}>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-2xl font-bold text-primary">
                     {metric.format(metric.user1Value)}
                   </p>
-                  <p className="text-sm text-gray-600">@{user1.username}</p>
+                  <p className="text-sm text-gray-400">@{user1.username}</p>
                   {winner === 'user1' && (
                     <div className="mt-2">
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-900/40 text-green-300 border border-green-500/50">
                         Winner
                       </span>
                     </div>
@@ -140,18 +145,18 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
                 </div>
                 
                 {/* User 2 Value */}
-                <div className={`text-center p-4 rounded-lg ${
-                  winner === 'user2' ? 'bg-green-50 border-2 border-green-200' : 
-                  winner === 'tie' ? 'bg-gray-50 border-2 border-gray-200' : 
-                  'bg-gray-50'
+                <div className={`text-center p-4 rounded-lg border ${
+                  winner === 'user2' ? 'bg-green-900/20 border-secondary' : 
+                  winner === 'tie' ? 'bg-elevated border-tertiary' : 
+                  'bg-elevated border-elevated'
                 }`}>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-2xl font-bold text-secondary">
                     {metric.format(metric.user2Value)}
                   </p>
-                  <p className="text-sm text-gray-600">@{user2.username}</p>
+                  <p className="text-sm text-gray-400">@{user2.username}</p>
                   {winner === 'user2' && (
                     <div className="mt-2">
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-900/40 text-green-300 border border-green-500/50">
                         Winner
                       </span>
                     </div>
@@ -161,7 +166,7 @@ export default function ComparisonView({ comparisonData }: ComparisonViewProps) 
               
               {winner === 'tie' && (
                 <div className="text-center mt-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-tertiary/20 text-tertiary border border-tertiary/50">
                     Tie
                   </span>
                 </div>

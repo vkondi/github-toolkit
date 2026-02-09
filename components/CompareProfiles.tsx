@@ -1,14 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft, Github } from 'lucide-react'
+import { Github } from 'lucide-react'
+import Link from 'next/link'
 import ComparisonView from '@/components/ComparisonView'
 
-interface CompareProfilesProps {
-  onBack: () => void
-}
-
-export default function CompareProfiles({ onBack }: CompareProfilesProps) {
+export default function CompareProfiles() {
   const [compareUsernames, setCompareUsernames] = useState({ user1: '', user2: '' })
   const [comparisonData, setComparisonData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -40,22 +37,15 @@ export default function CompareProfiles({ onBack }: CompareProfilesProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-surface border-b border-elevated sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16">
-            <button
-              onClick={onBack}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mr-6"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back to Dashboard</span>
-            </button>
-            <div className="flex items-center space-x-3">
-              <Github className="h-8 w-8 text-primary-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Compare Profiles</h1>
-            </div>
+            <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <Github className="h-8 w-8 text-primary" />
+              <h1 className="text-2xl font-bold text-primary">GitHub Toolkit</h1>
+            </Link>
           </div>
         </div>
       </header>
@@ -66,7 +56,7 @@ export default function CompareProfiles({ onBack }: CompareProfilesProps) {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="user1" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="user1" className="block text-sm font-medium text-gray-300 mb-2">
                   First Username
                 </label>
                 <input
@@ -80,7 +70,7 @@ export default function CompareProfiles({ onBack }: CompareProfilesProps) {
                 />
               </div>
               <div>
-                <label htmlFor="user2" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="user2" className="block text-sm font-medium text-gray-300 mb-2">
                   Second Username
                 </label>
                 <input
@@ -108,8 +98,8 @@ export default function CompareProfiles({ onBack }: CompareProfilesProps) {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
-            <p className="text-red-800">{error}</p>
+          <div className="bg-red-900 border border-red-700 rounded-lg p-4 mb-8">
+            <p className="text-red-200">{error}</p>
           </div>
         )}
 

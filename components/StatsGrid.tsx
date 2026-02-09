@@ -13,43 +13,43 @@ export default function StatsGrid({ metrics }: StatsGridProps) {
       title: 'Total Stars',
       value: metrics.total_stars.toLocaleString(),
       icon: Star,
-      color: 'text-yellow-500',
-      bgColor: 'bg-yellow-50'
+      color: 'text-primary',
+      bgColor: 'bg-elevated border-primary'
     },
     {
       title: 'Total Forks',
       value: metrics.total_forks.toLocaleString(),
       icon: GitFork,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-50'
+      color: 'text-secondary',
+      bgColor: 'bg-elevated border-secondary'
     },
     {
       title: 'Avg Stars/Repo',
       value: metrics.avg_stars_per_repo.toFixed(1),
       icon: TrendingUp,
-      color: 'text-green-500',
-      bgColor: 'bg-green-50'
+      color: 'text-tertiary',
+      bgColor: 'bg-elevated border-tertiary'
     },
     {
       title: 'Avg Forks/Repo',
       value: metrics.avg_forks_per_repo.toFixed(1),
       icon: BarChart3,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-50'
+      color: 'text-secondary',
+      bgColor: 'bg-elevated border-secondary'
     },
     {
       title: 'Repository Count',
       value: metrics.repository_count.toLocaleString(),
       icon: Code,
-      color: 'text-indigo-500',
-      bgColor: 'bg-indigo-50'
+      color: 'text-tertiary',
+      bgColor: 'bg-elevated border-tertiary'
     },
     {
       title: 'Top Language',
       value: metrics.top_language || 'N/A',
       icon: Award,
-      color: 'text-orange-500',
-      bgColor: 'bg-orange-50'
+      color: 'text-primary',
+      bgColor: 'bg-elevated border-primary'
     }
   ]
 
@@ -58,14 +58,14 @@ export default function StatsGrid({ metrics }: StatsGridProps) {
       {stats.map((stat, index) => {
         const Icon = stat.icon
         return (
-          <div key={index} className="card">
+          <div key={index} className={`card border ${stat.bgColor}`}>
             <div className="flex items-center space-x-4">
-              <div className={`p-3 rounded-lg ${stat.bgColor}`}>
+              <div className={`p-3 rounded-lg bg-surface border ${stat.color}`}>
                 <Icon className={`h-6 w-6 ${stat.color}`} />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-sm font-medium text-gray-400">{stat.title}</p>
+                <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
               </div>
             </div>
           </div>
