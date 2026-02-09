@@ -29,50 +29,64 @@ export default function RepositoryList({ repositories }: RepositoryListProps) {
   return (
     <div className="space-y-4">
       {repositories.slice(0, 10).map((repo) => (
-        <div key={repo.name} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="flex items-center space-x-2 mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {repo.name}
-                </h3>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+        <div key={repo.name} className="border border-elevated rounded-lg p-4 hover:shadow-md transition-shadow bg-elevated">
+          <div className="flex flex-col space-y-3">
+            {/* Repository Header */}
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center space-x-2">
+                  <h3 className="text-lg font-semibold text-primary truncate">
+                    {repo.name}
+                  </h3>
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-tertiary flex-shrink-0"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-              
-              {repo.description && (
-                <p className="text-gray-600 mb-3 line-clamp-2">{repo.description}</p>
+            </div>
+            
+            {/* Repository Description */}
+            {repo.description && (
+              <p className="text-gray-400 text-sm line-clamp-2 break-words">{repo.description}</p>
+            )}
+            
+            {/* Metadata Grid - Responsive layout */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 text-sm text-gray-500">
+              {/* Language */}
+              {repo.language && (
+                <div className="flex items-center space-x-1 min-w-0">
+                  <Code className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">{repo.language}</span>
+                </div>
               )}
               
-              <div className="flex items-center space-x-6 text-sm text-gray-500">
-                {repo.language && (
-                  <div className="flex items-center space-x-1">
-                    <Code className="h-4 w-4" />
-                    <span>{repo.language}</span>
-                  </div>
-                )}
-                <div className="flex items-center space-x-1">
-                  <Star className="h-4 w-4" />
-                  <span>{repo.stars.toLocaleString()}</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <GitFork className="h-4 w-4" />
-                  <span>{repo.forks.toLocaleString()}</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <Calendar className="h-4 w-4" />
-                  <span>Updated {formatDate(repo.updated_at)}</span>
-                </div>
-                <span className="text-xs bg-gray-100 px-2 py-1 rounded">
-                  {formatSize(repo.size)}
-                </span>
+              {/* Stars */}
+              <div className="flex items-center space-x-1">
+                <Star className="h-4 w-4 flex-shrink-0" />
+                <span>{repo.stars.toLocaleString()}</span>
               </div>
+              
+              {/* Forks */}
+              <div className="flex items-center space-x-1">
+                <GitFork className="h-4 w-4 flex-shrink-0" />
+                <span>{repo.forks.toLocaleString()}</span>
+              </div>
+              
+              {/* Size */}
+              <div className="text-xs bg-surface px-2 py-1 rounded text-gray-400 w-fit">
+                {formatSize(repo.size)}
+              </div>
+            </div>
+            
+            {/* Updated Date - Full width on mobile */}
+            <div className="flex items-center space-x-1 text-sm text-gray-500 pt-2 border-t border-surface">
+              <Calendar className="h-4 w-4 flex-shrink-0" />
+              <span>Updated {formatDate(repo.updated_at)}</span>
             </div>
           </div>
         </div>
