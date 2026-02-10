@@ -30,6 +30,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="wjsrKQApqIPyzuQgutkwO2lvykBJkxNPjFEmTx9qXFg"
+        />
+      </head>
       <body className={inter.className}>
         <div className="min-h-screen bg-background flex flex-col">
           <div className="flex-1">{children}</div>
