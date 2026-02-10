@@ -44,8 +44,7 @@ All requests include proper GitHub API headers:
 {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": "token {token}",
-    "User-Agent": "GitHub-Toolkit"
+    "Authorization": "token {token}"
 }
 ```
 
@@ -90,14 +89,6 @@ Returns: List of user repositories with:
 - forks_count (forks)
 - updated_at
 - size
-
-### User Repositories with Search Endpoint
-
-```
-GET /search/repositories?q=user:{username}
-```
-
-Alternative endpoint for repository search and analysis
 
 ## Response Handling
 
@@ -204,8 +195,7 @@ import requests
 headers = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": f"token {token}",
-    "User-Agent": "GitHub-Toolkit"
+    "Authorization": f"token {token}"
 }
 
 response = requests.get(
