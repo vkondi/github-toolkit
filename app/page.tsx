@@ -70,25 +70,9 @@ export default function Home() {
                     {tool.title}
                   </h3>
                   <p className="text-gray-400">{tool.subtitle}</p>
-                  {tool.comingSoon && (
-                    <span className="inline-block mt-3 px-2 py-1 text-xs font-medium bg-elevated text-tertiary rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
                 </div>
               </div>
             );
-
-            if (tool.comingSoon) {
-              return (
-                <div
-                  key={tool.id}
-                  className="card cursor-not-allowed transition-all duration-200 opacity-60"
-                >
-                  {CardContent}
-                </div>
-              );
-            }
 
             return (
               <Link key={tool.id} href={tool.href!}>
