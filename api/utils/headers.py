@@ -30,7 +30,7 @@ def get_github_headers(authorization: bool = True, custom_headers: Optional[Dict
     }
     
     if authorization and GITHUB_TOKEN:
-        headers["Authorization"] = f"token {GITHUB_TOKEN}"
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
     
     if custom_headers:
         headers.update(custom_headers)

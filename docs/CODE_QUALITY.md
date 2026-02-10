@@ -194,37 +194,20 @@ Add this to your `.vscode/settings.json`:
 
 ## Troubleshooting
 
-### ESLint Issues
+**ESLint Issues**
+- Review error messages and fix manually
+- Check [ESLint documentation](https://eslint.org/docs/rules/)
 
-**Problem**: ESLint errors that can't be auto-fixed
-
-- **Solution**: Review the error messages and fix them manually
-- Check the [ESLint documentation](https://eslint.org/docs/rules/)
-
-### Prettier Conflicts
-
-**Problem**: ESLint and Prettier formatting conflicts
-
-- **Solution**: This should not happen due to `eslint-config-prettier` integration
+**Prettier Conflicts**
 - Run `yarn lint:fix` followed by `yarn format`
+- Conflicts prevented by `eslint-config-prettier`
 
-### Pre-commit Hook Failures
+**Pre-commit Hook Failures**
+- Fix reported errors, re-stage files, commit again
 
-**Problem**: Commits blocked by pre-commit hook
-
-- **Solution**:
-  1. Fix the reported errors
-  2. Stage the corrected files
-  3. Commit again
-
-### Type Checking Failures
-
-**Problem**: TypeScript errors preventing commits
-
-- **Solution**:
-  1. Run `yarn type-check` to see all errors
-  2. Fix type errors according to TypeScript diagnostics
-  3. Stage corrected files and retry
+**Type Checking Failures**
+- Run `yarn type-check` to see all errors
+- Fix TypeScript diagnostics, re-stage and retry
 
 ---
 

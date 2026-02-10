@@ -16,6 +16,9 @@ api/.env
 .next/
 out/
 
+# TypeScript
+tsconfig.tsbuildinfo
+
 # Production builds
 build/
 dist/

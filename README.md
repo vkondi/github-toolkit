@@ -34,7 +34,6 @@ cd github-toolkit
 pip install -r requirements.txt
 cp .env.example .env
 # Edit .env and add your GitHub token
-# GITHUB_TOKEN=your_token_here
 python -m flask --app api/index run -p 5328
 ```
 

@@ -24,18 +24,15 @@ cd github-toolkit
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Set up environment variables
-# Create .env file in the root directory
+# Create .env file from example
 cp .env.example .env
-
 # Edit .env and add your GitHub token
-# GITHUB_TOKEN=your_github_token_here
 
 # Run the Flask API server
 python -m flask --app api/index run -p 5328
 ```
 
-**Important**: The backend now properly loads environment variables from the `.env` file using `python-dotenv`. Make sure to create your `.env` file based on `.env.example` before running the backend.
+**Important**: The backend loads environment variables from the `.env` file using `python-dotenv`. Copy `.env.example` to `.env` and add your GitHub token before running the backend.
 
 ### 3. Frontend Setup
 
@@ -54,27 +51,15 @@ yarn next-dev
 
 ## GitHub API Token Setup
 
-To use the GitHub API effectively, you'll need a personal access token:
+For GitHub API authentication and rate limit details, see [GitHub API Integration](./GITHUB_API_INTEGRATION.md#authentication).
 
-1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-2. Generate a new token with the following scopes:
-   - `public_repo` (for public repository access)
-   - `user` (for user profile information)
-3. Add the token to your `.env` file in the root directory:
-   ```bash
-   GITHUB_TOKEN=your_token_here
-   ```
+Quick setup:
+```bash
+# Add to your .env file in the root directory
+GITHUB_TOKEN=your_token_here
+```
 
-**Note**: Without a token, you'll be limited to 60 requests per hour. With a token, you get 5,000 requests per hour.
-
-## API Best Practices
-
-This project follows GitHub's recommended API best practices:
-
-- Uses `Accept: application/vnd.github+json` header
-- Includes `X-GitHub-Api-Version: 2022-11-28` header
-- Properly authenticates using personal access tokens via environment variables
-- Reference: [GitHub REST API Documentation](https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28)
+**Note**: Without a token, you're limited to 60 requests/hour. With a token, you get 5,000 requests/hour.
 
 ## Running the Application
 
@@ -119,59 +104,46 @@ yarn start
 
 ### Common Issues
 
-#### 1. CORS Errors
+**CORS Errors**
+- Ensure API runs on port 5328 and frontend on port 3000
+- Flask-CORS is configured in `api/app.py`
 
-- Make sure the API is running on port 5328 and frontend on port 3000
-- Check that Flask-CORS is properly configured
+**API Rate Limits**
+- Add GitHub token to `.env` to increase from 60 to 5,000 requests/hour
 
-#### 2. API Rate Limits
+**User Not Found**
+- Verify username exists and is public
+- Check for leading/trailing spaces
 
-- Add a GitHub token to your `.env` file to increase rate limits from 60 to 5,000 requests/hour
-- Without a token, you may encounter rate limit errors when analyzing multiple profiles
-
-#### 3. User Not Found
-
-- Verify the GitHub username exists and is public
-- Check that the username doesn't have leading/trailing spaces
-
-#### 4. Build Errors
-
-- Ensure all dependencies are installed correctly: `yarn install`
-- Clear Node cache: `yarn cache clean`
-- Rebuild: `yarn build`
-
-#### 5. Environment Variables Not Loading
-
-- Ensure `.env` file is in the root directory (not in any subdirectory)
-- Verify `python-dotenv` is installed: `pip install python-dotenv`
-- For Flask, restart the server after changing `.env` file
-- Use `export` command on Linux/Mac or `set` command on Windows for temporary testing
-
-#### 6. Python Dependencies Missing
-
+**Build Errors**
 ```bash
-# Reinstall all Python dependencies
+yarn install  # Reinstall dependencies
+yarn cache clean  # Clear cache
+yarn build  # Rebuild
+```
+
+**Environment Variables Not Loading**
+- Ensure `.env` is in root directory
+- Verify `python-dotenv` is installed
+- Restart Flask server after changing `.env`
+
+**Python Dependencies Missing**
+```bash
 pip install -r requirements.txt --force-reinstall
 ```
 
-#### 7. Port Already in Use
-
-If port 3000 or 5328 is already in use:
-
+**Port Already in Use**
 ```bash
-# Frontend on different port
-yarn next-dev -p 3001
-
-# Backend on different port
-python -m flask --app api/index run -p 5329
+yarn next-dev -p 3001  # Frontend on different port
+python -m flask --app api/index run -p 5329  # Backend on different port
 ```
 
 ### Getting Help
 
-1. Check the project README for general information
-2. Review the GitHub API documentation for API-related questions
-3. Check browser console (F12) for frontend errors
-4. Check terminal output for backend errors
+- Check project README for general information
+- Review GitHub API documentation for API issues
+- Check browser console (F12) for frontend errors
+- Check terminal output for backend errors
 
 ## Next Steps
 

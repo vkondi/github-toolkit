@@ -44,8 +44,7 @@ All requests include proper GitHub API headers:
 {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": "Bearer {token}",
-    "User-Agent": "GitHub-Toolkit"
+    "Authorization": "Bearer {token}"
 }
 ```
 
@@ -91,14 +90,6 @@ Returns: List of user repositories with:
 - updated_at
 - size
 
-### User Repositories with Search Endpoint
-
-```
-GET /search/repositories?q=user:{username}
-```
-
-Alternative endpoint for repository search and analysis
-
 ## Response Handling
 
 ### Successful Response (200 OK)
@@ -116,8 +107,6 @@ Alternative endpoint for repository search and analysis
 
 ### Error Handling
 
-Common error responses and handling:
-
 | Status | Error                | Meaning                                         |
 | ------ | -------------------- | ----------------------------------------------- |
 | 404    | Not Found            | User or repository doesn't exist                |
@@ -125,15 +114,6 @@ Common error responses and handling:
 | 401    | Unauthorized         | Invalid or expired token                        |
 | 422    | Unprocessable Entity | Invalid parameters                              |
 | 500    | Server Error         | GitHub API server error                         |
-
-### Error Response Example
-
-```json
-{
-  "message": "API rate limit exceeded",
-  "documentation_url": "https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"
-}
-```
 
 ## Rate Limiting
 
@@ -205,20 +185,6 @@ Format Comparison Response
 Frontend Displays Side-by-Side Comparison
 ```
 
-## Caching Strategy
-
-### Frontend Caching
-
-- **Browser Cache**: Automatic caching of API responses
-- **Session Storage**: Cache results during user session
-- **Prevents Duplicate**: Avoid duplicate API calls for same user
-
-### Backend Caching
-
-- **In-Memory Cache**: Store recent profile queries
-- **TTL**: Cache invalidates after 1 hour
-- **Cache Invalidation**: Manual cache clear on demand
-
 ## API Integration Code Examples
 
 ### Basic Request (Python)
@@ -229,8 +195,7 @@ import requests
 headers = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": f"Bearer {token}",
-    "User-Agent": "GitHub-Toolkit"
+    "Authorization": f"Bearer {token}"
 }
 
 response = requests.get(
@@ -259,30 +224,20 @@ repositories = repos_response.json()
 
 ## Troubleshooting API Issues
 
-### Rate Limit Exceeded
+**Rate Limit Exceeded (403)**
+- Wait until rate limit reset time or add GitHub token
 
-- **Error**: 403 Forbidden with "API rate limit exceeded"
-- **Solution**: Wait until rate limit reset time or add GitHub token
+**User Not Found (404)**
+- Verify username exists and is spelled correctly
 
-### User Not Found
+**Invalid Token (401)**
+- Check token validity, regenerate if needed
 
-- **Error**: 404 Not Found
-- **Solution**: Verify GitHub username exists and is spelled correctly
+**Network Timeout**
+- Check network connection, GitHub may be experiencing issues
 
-### Invalid Token
-
-- **Error**: 401 Unauthorized
-- **Solution**: Check token is valid and not expired, regenerate if needed
-
-### Network Timeout
-
-- **Error**: Request timeout after 30 seconds
-- **Solution**: Check network connection, GitHub may be experiencing issues
-
-### Incomplete Data
-
-- **Error**: Missing fields in response
-- **Solution**: Verify user repository visibility settings, some repos may be private
+**Incomplete Data**
+- Verify repository visibility settings, some repos may be private
 
 ## API Documentation References
 

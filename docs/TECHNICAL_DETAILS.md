@@ -19,7 +19,7 @@ Learn about the tech stack, architecture, and API endpoints used in GitHub Toolk
 - **requests** - HTTP client library for making GitHub API calls
 - **Flask-CORS** - Cross-origin resource sharing for frontend-backend communication
 - **python-dotenv** - Environment variable management for configuration
-- **Python 3.8+** - Modern Python with async support
+- **Python 3.8+** - Modern Python runtime
 
 ### External APIs
 
@@ -95,12 +95,10 @@ All API endpoints are prefixed with `/api`
 
 - **Image Optimization**: Next.js Image component for automatic optimization
 - **Code Splitting**: Next.js App Router enables route-based code splitting
-- **Caching**: Browser and server-side caching for repeated requests
 - **Responsive Images**: Automatic srcset generation for different screen sizes
 
 ### Backend
 
-- **Request Caching**: Minimizes repeated GitHub API calls
 - **Efficient Metrics**: Precomputed metrics reduce calculation time
 - **Error Handling**: Graceful error handling prevents server crashes
 - **Rate Limiting**: Respects GitHub API rate limits
