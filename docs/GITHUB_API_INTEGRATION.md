@@ -44,7 +44,7 @@ All requests include proper GitHub API headers:
 {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": "token {token}"
+    "Authorization": "Bearer {token}"
 }
 ```
 
@@ -195,7 +195,7 @@ import requests
 headers = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": f"token {token}"
+    "Authorization": f"Bearer {token}"
 }
 
 response = requests.get(
