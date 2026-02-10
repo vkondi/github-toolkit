@@ -6,7 +6,6 @@ import {
   Users,
   BarChart3,
   TrendingUp,
-  Code,
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
@@ -26,20 +25,6 @@ export default function Home() {
       subtitle: "Compare two developers",
       icon: Users,
       href: "/compare-profiles",
-    },
-    {
-      id: 'repository-insights',
-      title: 'Repository Insights',
-      subtitle: 'Deep dive into repositories',
-      icon: Code,
-      comingSoon: true
-    },
-    {
-      id: 'team-analytics',
-      title: 'Team Analytics',
-      subtitle: 'Analyze team performance',
-      icon: TrendingUp,
-      comingSoon: true
     }
   ];
 

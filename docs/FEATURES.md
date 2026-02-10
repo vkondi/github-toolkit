@@ -116,17 +116,6 @@ Compare across multiple dimensions:
 - **Image Optimization**: Automatic optimization via Next.js Image component
 - **Fast Loading**: Minimal dependencies and efficient code structure
 
-## 🚀 Future Tools (Planned)
-
-### Repository Insights
-Deep dive into individual repository statistics and analysis
-
-### Team Analytics
-Team performance, collaboration patterns, and productivity metrics
-
-### Advanced Metrics
-More sophisticated GitHub data analysis and visualization tools
-
 ## 🌟 Core Capabilities
 
 - **Real-time Data**: Live data from GitHub API
