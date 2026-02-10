@@ -5,6 +5,7 @@ GitHub Toolkit provides a comprehensive suite of tools for analyzing GitHub prof
 ## 🎯 Dashboard Interface
 
 The landing page showcases all available tools with a clean, modern dark theme:
+
 - **Tool Cards**: Clean, minimal cards showing title, subtitle, and icon for each tool
 - **Easy Navigation**: Logo and title in header are clickable and navigate to home page
 - **Dark Theme**: Modern dark background with vibrant neon accent colors
@@ -16,6 +17,7 @@ The landing page showcases all available tools with a clean, modern dark theme:
 Get detailed insights into any GitHub user's profile:
 
 ### Profile Information
+
 - **Avatar**: User's profile picture with circular border
 - **Name & Username**: Display name and @username
 - **Bio**: User's GitHub bio if available
@@ -24,6 +26,7 @@ Get detailed insights into any GitHub user's profile:
 - **Social Links**: Links to personal website, blog, and Twitter if available
 
 ### Statistics
+
 - **Followers**: Number of GitHub followers
 - **Following**: Number of users being followed
 - **Total Stars**: Cumulative stars across all repositories
@@ -32,12 +35,14 @@ Get detailed insights into any GitHub user's profile:
 - **Join Date**: When the user joined GitHub
 
 ### Language Distribution
+
 - **Interactive Chart**: Doughnut chart showing programming language distribution
 - **Color-coded**: Uses neon color palette for visual appeal
 - **Percentage Display**: Shows exact percentage for each language
 - **Top Languages**: Easily identify primary programming languages used
 
 ### Repository List
+
 - **Recent Repositories**: Shows up to 10 most recent repositories
 - **Detailed Metrics**: For each repository:
   - Repository name with link to GitHub
@@ -50,6 +55,7 @@ Get detailed insights into any GitHub user's profile:
 - **Mobile-Responsive**: Information properly wraps and organizes on mobile devices
 
 ### Key Metrics
+
 - **Comprehensive Stats**: Color-coded statistics grid showing:
   - Total stars across all repos
   - Total forks across all repos
@@ -63,12 +69,15 @@ Get detailed insights into any GitHub user's profile:
 Compare two GitHub profiles side-by-side for hiring decisions and team analysis:
 
 ### Profile Cards
+
 - **Side-by-side Avatars**: Shows profile pictures for both users
 - **Summary Info**: Name, username, and bio for each user
 - **Visual Organization**: Clear separation between two users being compared
 
 ### Metrics Comparison
+
 Compare across multiple dimensions:
+
 - **Followers**: Total follower count for each user
 - **Following**: People each user is following
 - **Public Repositories**: Number of public repositories
@@ -81,6 +90,7 @@ Compare across multiple dimensions:
   - Context-aware coloring
 
 ### Decision Support
+
 - **Quick Insights**: Identify strengths and weaknesses at a glance
 - **Hiring Focus**: Perfect for comparing candidates
 - **Research Focus**: Useful for understanding developer profiles
@@ -89,6 +99,7 @@ Compare across multiple dimensions:
 ## 🎨 User Experience Enhancements
 
 ### Dark Theme with Neon Accents
+
 - **Radioactive Lime** (#CCFF00): Primary color for main CTAs, headers, and key text
 - **Electric Magenta** (#FF00FF): Secondary accents for alternative emphasis
 - **Cyan Glitch** (#00F0FF): Tertiary color for data visualization and borders
@@ -96,20 +107,23 @@ Compare across multiple dimensions:
 - **Elevated Surfaces** (#1A1A1A, #121212): Cards and input fields
 
 ### Navigation Features
+
 - **Sticky Header**: Header remains visible while scrolling
 - **Clickable Logo**: Logo and title navigate back to home page from any page
 - **No Back Buttons**: Clean navigation without visible back buttons
 - **Smart Routing**: All pages have direct URLs for bookmarking
 
 ### Mobile Optimization
+
 - **Responsive Layouts**: Adaptive grid layouts for all screen sizes
 - **Touch-Friendly**: Large touch targets and comfortable spacing
 - **Optimized Typography**: Responsive font sizes for readability
 - **Flexible Metadata**: Repository details organize efficiently on mobile
 
 ### Accessibility & Performance
+
 - **Smooth Scrolling**: HTML smooth scroll behavior throughout
-- **Scroll-to-Top Button**: 
+- **Scroll-to-Top Button**:
   - Appears after scrolling 300px
   - Smooth animated transitions
   - Accessible with keyboard navigation

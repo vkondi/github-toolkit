@@ -54,10 +54,13 @@ These headers ensure compatibility with the latest GitHub API features and prope
 ## API Endpoints Used
 
 ### User Endpoint
+
 ```
 GET /users/{username}
 ```
+
 Returns: Basic user profile information
+
 - username
 - name
 - bio
@@ -72,10 +75,13 @@ Returns: Basic user profile information
 - created_at
 
 ### User Repositories Endpoint
+
 ```
 GET /users/{username}/repos?per_page=100&sort=updated
 ```
+
 Returns: List of user repositories with:
+
 - name
 - description
 - html_url
@@ -86,14 +92,17 @@ Returns: List of user repositories with:
 - size
 
 ### User Repositories with Search Endpoint
+
 ```
 GET /search/repositories?q=user:{username}
 ```
+
 Alternative endpoint for repository search and analysis
 
 ## Response Handling
 
 ### Successful Response (200 OK)
+
 ```json
 {
   "login": "octocat",
@@ -109,15 +118,16 @@ Alternative endpoint for repository search and analysis
 
 Common error responses and handling:
 
-| Status | Error | Meaning |
-|--------|-------|---------|
-| 404 | Not Found | User or repository doesn't exist |
-| 403 | Forbidden | Rate limit exceeded or insufficient permissions |
-| 401 | Unauthorized | Invalid or expired token |
-| 422 | Unprocessable Entity | Invalid parameters |
-| 500 | Server Error | GitHub API server error |
+| Status | Error                | Meaning                                         |
+| ------ | -------------------- | ----------------------------------------------- |
+| 404    | Not Found            | User or repository doesn't exist                |
+| 403    | Forbidden            | Rate limit exceeded or insufficient permissions |
+| 401    | Unauthorized         | Invalid or expired token                        |
+| 422    | Unprocessable Entity | Invalid parameters                              |
+| 500    | Server Error         | GitHub API server error                         |
 
 ### Error Response Example
+
 ```json
 {
   "message": "API rate limit exceeded",
@@ -136,6 +146,7 @@ Common error responses and handling:
 ### Rate Limit Headers
 
 All responses include rate limit information:
+
 ```
 X-RateLimit-Limit: 5000
 X-RateLimit-Remaining: 4999
@@ -197,11 +208,13 @@ Frontend Displays Side-by-Side Comparison
 ## Caching Strategy
 
 ### Frontend Caching
+
 - **Browser Cache**: Automatic caching of API responses
 - **Session Storage**: Cache results during user session
 - **Prevents Duplicate**: Avoid duplicate API calls for same user
 
 ### Backend Caching
+
 - **In-Memory Cache**: Store recent profile queries
 - **TTL**: Cache invalidates after 1 hour
 - **Cache Invalidation**: Manual cache clear on demand
@@ -247,22 +260,27 @@ repositories = repos_response.json()
 ## Troubleshooting API Issues
 
 ### Rate Limit Exceeded
+
 - **Error**: 403 Forbidden with "API rate limit exceeded"
 - **Solution**: Wait until rate limit reset time or add GitHub token
 
 ### User Not Found
+
 - **Error**: 404 Not Found
 - **Solution**: Verify GitHub username exists and is spelled correctly
 
 ### Invalid Token
+
 - **Error**: 401 Unauthorized
 - **Solution**: Check token is valid and not expired, regenerate if needed
 
 ### Network Timeout
+
 - **Error**: Request timeout after 30 seconds
 - **Solution**: Check network connection, GitHub may be experiencing issues
 
 ### Incomplete Data
+
 - **Error**: Missing fields in response
 - **Solution**: Verify user repository visibility settings, some repos may be private
 
@@ -274,5 +292,3 @@ repositories = repos_response.json()
 - [Repositories API](https://docs.github.com/en/rest/repos)
 - [Authentication](https://docs.github.com/en/rest/authentication)
 - [Rate Limiting](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting)
-
-

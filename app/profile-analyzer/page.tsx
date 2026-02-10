@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import ProfileAnalyzer from "@/components/ProfileAnalyzer";
+import ProfileAnalyzer from '@/components/ProfileAnalyzer';
 
 export default function ProfileAnalyzerPage() {
   return (

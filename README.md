@@ -6,12 +6,14 @@ A comprehensive GitHub toolkit built with Next.js frontend and Flask API. Analyz
 
 - **[Getting Started](./docs/GETTING_STARTED.md)** - Installation, setup, and troubleshooting guide
 - **[Features](./docs/FEATURES.md)** - Detailed feature descriptions and capabilities
+- **[Code Quality](./docs/CODE_QUALITY.md)** - Code quality tools, linting, formatting, and type safety
 - **[Technical Details](./docs/TECHNICAL_DETAILS.md)** - Tech stack, architecture, and deployment
 - **[GitHub API Integration](./docs/GITHUB_API_INTEGRATION.md)** - API endpoints and integration details
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ and yarn
 - Python 3.8+
 - Git
@@ -20,12 +22,14 @@ A comprehensive GitHub toolkit built with Next.js frontend and Flask API. Analyz
 ### Setup
 
 **1. Clone the repository:**
+
 ```bash
 git clone <repository-url>
 cd github-toolkit
 ```
 
 **2. Backend setup:**
+
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
@@ -35,12 +39,14 @@ python -m flask --app api/index run -p 5328
 ```
 
 **3. Frontend setup (new terminal):**
+
 ```bash
 yarn
 yarn next-dev
 ```
 
 **4. Access the application:**
+
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:5328
 
@@ -52,11 +58,13 @@ yarn next-dev
 ## 💻 Development
 
 **Run both frontend and backend concurrently:**
+
 ```bash
 yarn dev
 ```
 
 Or run them separately:
+
 ```bash
 # Terminal 1
 python -m flask --app api/index run -p 5328
@@ -66,6 +74,7 @@ yarn next-dev
 ```
 
 **Build for production:**
+
 ```bash
 yarn build
 yarn start
@@ -75,6 +84,7 @@ yarn start
 
 - For detailed setup and troubleshooting, see [Getting Started](./docs/GETTING_STARTED.md)
 - For feature descriptions, see [Features](./docs/FEATURES.md)
+- For code quality standards, see [Code Quality](./docs/CODE_QUALITY.md)
 - For technical architecture, see [Technical Details](./docs/TECHNICAL_DETAILS.md)
 - For API integration details, see [GitHub API Integration](./docs/GITHUB_API_INTEGRATION.md)
 
@@ -89,6 +99,7 @@ We welcome contributions! Please follow these steps:
 5. Open a Pull Request
 
 ### Code Standards
+
 - Use TypeScript for frontend code
 - Maintain clean, readable code with proper comments
 - Test your changes thoroughly before submitting

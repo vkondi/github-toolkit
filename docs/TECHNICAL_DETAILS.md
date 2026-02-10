@@ -5,6 +5,7 @@ Learn about the tech stack, architecture, and API endpoints used in GitHub Toolk
 ## Tech Stack
 
 ### Frontend
+
 - **Next.js 14** - React framework with App Router for modern, server-side rendering capabilities
 - **TypeScript** - Type-safe development with full IDE support
 - **Tailwind CSS** - Utility-first CSS framework for responsive design
@@ -13,6 +14,7 @@ Learn about the tech stack, architecture, and API endpoints used in GitHub Toolk
 - **React 18.2** - Latest React with concurrent features
 
 ### Backend
+
 - **Flask** - Lightweight Python web framework for building REST APIs
 - **requests** - HTTP client library for making GitHub API calls
 - **Flask-CORS** - Cross-origin resource sharing for frontend-backend communication
@@ -20,6 +22,7 @@ Learn about the tech stack, architecture, and API endpoints used in GitHub Toolk
 - **Python 3.8+** - Modern Python with async support
 
 ### External APIs
+
 - **GitHub REST API v2022-11-28** - Official GitHub API for accessing user and repository data
 
 ### Design Principles
@@ -50,16 +53,20 @@ Learn about the tech stack, architecture, and API endpoints used in GitHub Toolk
 ## API Endpoints
 
 ### Base URL
+
 All API endpoints are prefixed with `/api`
 
 ### Profile Analysis
+
 - `GET /api/profile/{username}` - Get complete profile analysis including user info, repositories, and statistics
 - `GET /api/repositories/{username}` - Get comprehensive list of user repositories with metrics
 
 ### Profile Comparison
+
 - `GET /api/compare/{username1}/{username2}` - Compare two profiles side-by-side with metrics comparison
 
 ### Health Check
+
 - `GET /api/` - Check API server health and connectivity
 
 ## Data Flow
@@ -85,18 +92,19 @@ All API endpoints are prefixed with `/api`
 ## Performance Considerations
 
 ### Frontend
+
 - **Image Optimization**: Next.js Image component for automatic optimization
 - **Code Splitting**: Next.js App Router enables route-based code splitting
 - **Caching**: Browser and server-side caching for repeated requests
 - **Responsive Images**: Automatic srcset generation for different screen sizes
 
 ### Backend
+
 - **Request Caching**: Minimizes repeated GitHub API calls
 - **Efficient Metrics**: Precomputed metrics reduce calculation time
 - **Error Handling**: Graceful error handling prevents server crashes
 - **Rate Limiting**: Respects GitHub API rate limits
 
 ### Environment Variables
+
 - `GITHUB_TOKEN`: Personal access token with `public_repo` and `user` scopes
-
-

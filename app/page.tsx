@@ -1,31 +1,24 @@
-"use client";
+'use client';
 
-import {
-  Github,
-  User,
-  Users,
-  BarChart3,
-  TrendingUp,
-  ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
+import { Github, User, Users, BarChart3, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const tools = [
     {
-      id: "profile-analyzer",
-      title: "Profile Analyzer",
-      subtitle: "Analyze GitHub profiles",
+      id: 'profile-analyzer',
+      title: 'Profile Analyzer',
+      subtitle: 'Analyze GitHub profiles',
       icon: User,
-      href: "/profile-analyzer",
+      href: '/profile-analyzer',
     },
     {
-      id: "compare-profiles",
-      title: "Compare Profiles",
-      subtitle: "Compare two developers",
+      id: 'compare-profiles',
+      title: 'Compare Profiles',
+      subtitle: 'Compare two developers',
       icon: Users,
-      href: "/compare-profiles",
-    }
+      href: '/compare-profiles',
+    },
   ];
 
   return (
@@ -34,11 +27,12 @@ export default function Home() {
       <header className="bg-surface border-b border-elevated sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16">
-            <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <Link
+              href="/"
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
               <Github className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold text-primary">
-                GitHub Toolkit
-              </h1>
+              <h1 className="text-2xl font-bold text-primary">GitHub Toolkit</h1>
             </Link>
           </div>
         </div>
@@ -47,12 +41,10 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            GitHub Toolkit
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">GitHub Toolkit</h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            A comprehensive suite of tools for analyzing GitHub profiles,
-            comparing developers, and gaining insights.
+            A comprehensive suite of tools for analyzing GitHub profiles, comparing developers, and
+            gaining insights.
           </p>
         </div>
 
@@ -97,34 +89,22 @@ export default function Home() {
               <div className="w-16 h-16 bg-elevated rounded-lg flex items-center justify-center mx-auto mb-4 border border-primary">
                 <BarChart3 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-primary mb-2">
-                Analytics
-              </h3>
-              <p className="text-gray-400">
-                Get detailed insights with beautiful visualizations.
-              </p>
+              <h3 className="text-lg font-semibold text-primary mb-2">Analytics</h3>
+              <p className="text-gray-400">Get detailed insights with beautiful visualizations.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-elevated rounded-lg flex items-center justify-center mx-auto mb-4 border border-secondary">
                 <Users className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-lg font-semibold text-secondary mb-2">
-                Compare
-              </h3>
-              <p className="text-gray-400">
-                Compare developers side-by-side easily.
-              </p>
+              <h3 className="text-lg font-semibold text-secondary mb-2">Compare</h3>
+              <p className="text-gray-400">Compare developers side-by-side easily.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-elevated rounded-lg flex items-center justify-center mx-auto mb-4 border border-tertiary">
                 <TrendingUp className="h-8 w-8 text-tertiary" />
               </div>
-              <h3 className="text-lg font-semibold text-tertiary mb-2">
-                Real-time
-              </h3>
-              <p className="text-gray-400">
-                Access live data from GitHub API.
-              </p>
+              <h3 className="text-lg font-semibold text-tertiary mb-2">Real-time</h3>
+              <p className="text-gray-400">Access live data from GitHub API.</p>
             </div>
           </div>
         </div>

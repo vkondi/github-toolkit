@@ -70,6 +70,7 @@ To use the GitHub API effectively, you'll need a personal access token:
 ## API Best Practices
 
 This project follows GitHub's recommended API best practices:
+
 - Uses `Accept: application/vnd.github+json` header
 - Includes `X-GitHub-Api-Version: 2022-11-28` header
 - Properly authenticates using personal access tokens via environment variables
@@ -119,36 +120,44 @@ yarn start
 ### Common Issues
 
 #### 1. CORS Errors
+
 - Make sure the API is running on port 5328 and frontend on port 3000
 - Check that Flask-CORS is properly configured
 
 #### 2. API Rate Limits
+
 - Add a GitHub token to your `.env` file to increase rate limits from 60 to 5,000 requests/hour
 - Without a token, you may encounter rate limit errors when analyzing multiple profiles
 
 #### 3. User Not Found
+
 - Verify the GitHub username exists and is public
 - Check that the username doesn't have leading/trailing spaces
 
 #### 4. Build Errors
+
 - Ensure all dependencies are installed correctly: `yarn install`
 - Clear Node cache: `yarn cache clean`
 - Rebuild: `yarn build`
 
 #### 5. Environment Variables Not Loading
+
 - Ensure `.env` file is in the root directory (not in any subdirectory)
 - Verify `python-dotenv` is installed: `pip install python-dotenv`
 - For Flask, restart the server after changing `.env` file
 - Use `export` command on Linux/Mac or `set` command on Windows for temporary testing
 
 #### 6. Python Dependencies Missing
+
 ```bash
 # Reinstall all Python dependencies
 pip install -r requirements.txt --force-reinstall
 ```
 
 #### 7. Port Already in Use
+
 If port 3000 or 5328 is already in use:
+
 ```bash
 # Frontend on different port
 yarn next-dev -p 3001

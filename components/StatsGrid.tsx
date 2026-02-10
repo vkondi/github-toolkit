@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { Metrics } from '@/types'
-import { Star, GitFork, BarChart3, Code, TrendingUp, Award } from 'lucide-react'
+import { Metrics } from '@/types';
+import { Star, GitFork, BarChart3, Code, TrendingUp, Award } from 'lucide-react';
 
 interface StatsGridProps {
-  metrics: Metrics
+  metrics: Metrics;
 }
 
 export default function StatsGrid({ metrics }: StatsGridProps) {
@@ -14,49 +14,49 @@ export default function StatsGrid({ metrics }: StatsGridProps) {
       value: metrics.total_stars.toLocaleString(),
       icon: Star,
       color: 'text-primary',
-      bgColor: 'bg-elevated border-primary'
+      bgColor: 'bg-elevated border-primary',
     },
     {
       title: 'Total Forks',
       value: metrics.total_forks.toLocaleString(),
       icon: GitFork,
       color: 'text-secondary',
-      bgColor: 'bg-elevated border-secondary'
+      bgColor: 'bg-elevated border-secondary',
     },
     {
       title: 'Avg Stars/Repo',
       value: metrics.avg_stars_per_repo.toFixed(1),
       icon: TrendingUp,
       color: 'text-tertiary',
-      bgColor: 'bg-elevated border-tertiary'
+      bgColor: 'bg-elevated border-tertiary',
     },
     {
       title: 'Avg Forks/Repo',
       value: metrics.avg_forks_per_repo.toFixed(1),
       icon: BarChart3,
       color: 'text-secondary',
-      bgColor: 'bg-elevated border-secondary'
+      bgColor: 'bg-elevated border-secondary',
     },
     {
       title: 'Repository Count',
       value: metrics.repository_count.toLocaleString(),
       icon: Code,
       color: 'text-tertiary',
-      bgColor: 'bg-elevated border-tertiary'
+      bgColor: 'bg-elevated border-tertiary',
     },
     {
       title: 'Top Language',
       value: metrics.top_language || 'N/A',
       icon: Award,
       color: 'text-primary',
-      bgColor: 'bg-elevated border-primary'
-    }
-  ]
+      bgColor: 'bg-elevated border-primary',
+    },
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {stats.map((stat, index) => {
-        const Icon = stat.icon
+        const Icon = stat.icon;
         return (
           <div key={index} className={`card border ${stat.bgColor}`}>
             <div className="flex items-center space-x-4">
@@ -69,8 +69,8 @@ export default function StatsGrid({ metrics }: StatsGridProps) {
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
