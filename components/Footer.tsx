@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-surface border-t border-elevated py-8 mt-16">
@@ -11,5 +11,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

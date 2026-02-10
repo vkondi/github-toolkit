@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#CCFF00',       // Radioactive Lime
-        secondary: '#FF00FF',     // Electric Magenta
-        tertiary: '#00F0FF',      // Cyan Glitch
-        background: '#050505',    // Obsidian
-        surface: '#121212',       // Dark Room
-        elevated: '#1A1A1A',      // Carbon
+        primary: '#CCFF00', // Radioactive Lime
+        secondary: '#FF00FF', // Electric Magenta
+        tertiary: '#00F0FF', // Cyan Glitch
+        background: '#050505', // Obsidian
+        surface: '#121212', // Dark Room
+        elevated: '#1A1A1A', // Carbon
       },
     },
   },
   plugins: [],
-}
+};

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import CompareProfiles from "@/components/CompareProfiles";
+import CompareProfiles from '@/components/CompareProfiles';
 
 export default function CompareProfilesPage() {
   return (
