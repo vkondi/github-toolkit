@@ -44,7 +44,7 @@ All requests include proper GitHub API headers:
 {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": "Bearer {token}",
+    "Authorization": "token {token}",
     "User-Agent": "GitHub-Toolkit"
 }
 ```
@@ -204,7 +204,7 @@ import requests
 headers = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": f"Bearer {token}",
+    "Authorization": f"token {token}",
     "User-Agent": "GitHub-Toolkit"
 }
 

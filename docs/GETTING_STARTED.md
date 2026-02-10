@@ -24,14 +24,15 @@ cd github-toolkit
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Create .env file in the root directory
-# Add your GitHub token: GITHUB_TOKEN=your_token_here
+# Create .env file from example
+cp .env.example .env
+# Edit .env and add your GitHub token
 
 # Run the Flask API server
 python -m flask --app api/index run -p 5328
 ```
 
-**Important**: The backend loads environment variables from the `.env` file using `python-dotenv`. Create a `.env` file in the root directory before running the backend.
+**Important**: The backend loads environment variables from the `.env` file using `python-dotenv`. Copy `.env.example` to `.env` and add your GitHub token before running the backend.
 
 ### 3. Frontend Setup
 
