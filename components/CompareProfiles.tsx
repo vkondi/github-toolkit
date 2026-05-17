@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Github } from 'lucide-react';
+import { GitBranch } from 'lucide-react';
 import Link from 'next/link';
 import ComparisonView from '@/components/ComparisonView';
 
@@ -46,7 +46,7 @@ export default function CompareProfiles() {
               href="/"
               className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
             >
-              <Github className="h-8 w-8 text-primary" />
+              <GitBranch className="h-8 w-8 text-primary" />
               <h1 className="text-2xl font-bold text-primary">GitHub Toolkit</h1>
             </Link>
           </div>

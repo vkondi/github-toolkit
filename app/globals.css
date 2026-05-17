@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #ccff00;
+  --color-secondary: #ff00ff;
+  --color-tertiary: #00f0ff;
+  --color-background: #050505;
+  --color-surface: #121212;
+  --color-elevated: #1a1a1a;
+}
 
 @layer base {
   html {

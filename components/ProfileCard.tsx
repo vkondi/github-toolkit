@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { GitHubProfile } from '@/types';
-import { MapPin, Building, Globe, Twitter, Calendar, Users, Star, GitFork } from 'lucide-react';
+import { MapPin, Building, Globe, AtSign, Calendar, Users, Star, GitFork } from 'lucide-react';
 
 interface ProfileCardProps {
   profile: GitHubProfile;
@@ -71,7 +71,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
             )}
             {profile.twitter_username && (
               <div className="flex items-center space-x-2 text-gray-400">
-                <Twitter className="h-4 w-4" />
+                <AtSign className="h-4 w-4" />
                 <a
                   href={`https://twitter.com/${profile.twitter_username}`}
                   target="_blank"
