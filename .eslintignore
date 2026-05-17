@@ -1,9 +1,0 @@
-node_modules
-.next
-out
-build
-dist
-.husky
-coverage
-*.config.js
-*.config.mjs

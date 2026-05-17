@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, User, Users, BarChart3, TrendingUp } from 'lucide-react';
+import { GitBranch, User, Users, BarChart3, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
               href="/"
               className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
             >
-              <Github className="h-8 w-8 text-primary" />
+              <GitBranch className="h-8 w-8 text-primary" />
               <h1 className="text-2xl font-bold text-primary">GitHub Toolkit</h1>
             </Link>
           </div>

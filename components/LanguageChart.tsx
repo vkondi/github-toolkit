@@ -12,13 +12,11 @@ interface LanguageChartProps {
 }
 
 export default function LanguageChart({ data }: LanguageChartProps) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
 
   useEffect(() => {
-    // Check if mobile on mount
-    setIsMobile(window.innerWidth < 768);
-
-    // Handle window resize
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
